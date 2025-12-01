@@ -3,25 +3,16 @@ import { StyleSheet, Text, View } from "react-native";
 import AppText from "./src/components/texts/AppText";
 import AppSaveView from "./src/components/views/AppSaveView";
 import FlashMessage, { showMessage } from "react-native-flash-message";
+import AppButton from "./src/components/buttons/AppButton";
+import AppTextInput from "./src/components/inputs/AppTextInput";
 
 export default function App() {
   return (
     <>
       <FlashMessage position={"top"} />
       <AppSaveView style={styles.container}>
-        <AppText variant="bold">Bold</AppText>
-        <AppText
-          variant="medium"
-          onPress={() => {
-            showMessage({
-              message: "Hello Medium",
-              color: "yellow",
-              type: "danger",
-            });
-          }}
-        >
-          Medium
-        </AppText>
+        <AppTextInput />
+        <AppText variant="medium">Medium</AppText>
       </AppSaveView>
     </>
   );
