@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
     borderRadius: s(25),
     borderWidth: 1,
     borderColor: AppColors.borderColor,
-    paddingHorizontal: s(50),
+    paddingHorizontal: s(15),
     fontSize: s(16),
     backgroundColor: AppColors.white,
     width: "100%",
