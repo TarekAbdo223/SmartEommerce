@@ -1,11 +1,12 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import HomeScreen from "../screens/home/HomeScreen";
 import ProfileScreen from "../screens/profile/ProfileScreen";
-import CartScreen from "../screens/cart/cartScreen";
+import CartScreen from "../screens/cart/CartScreen";
 import { AppColors } from "../styles/colors";
 import { s, vs } from "react-native-size-matters";
 import { Ionicons } from "@expo/vector-icons";
 import { IS_Android } from "../constants/constants";
+import HomeHeader from "../components/headers/HomeHeader";
 
 const Tab = createBottomTabNavigator();
 
@@ -13,6 +14,7 @@ export default function MainAppBottomTabs() {
   return (
     <Tab.Navigator
       screenOptions={{
+        // header: () => <HomeHeader />,
         headerShown: false,
         tabBarActiveTintColor: AppColors.primary,
         tabBarLabelStyle: {

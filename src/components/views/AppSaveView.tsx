@@ -13,7 +13,7 @@ import { IS_Android } from "../../constants/constants";
 
 interface AppSaveViewProps {
   children: ReactNode;
-  style: ViewStyle;
+  style?: ViewStyle;
 }
 
 const AppSaveView: FC<AppSaveViewProps> = ({ children, style }) => {

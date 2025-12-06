@@ -1,11 +1,14 @@
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
+import AppSaveView from "../../components/views/AppSaveView";
+import HomeScreen from "../home/HomeScreen";
 
 const ProfileScreen = () => {
   return (
-    <View>
+    <AppSaveView>
+      <HomeScreen />
       <Text>ProfileScreen</Text>
-    </View>
+    </AppSaveView>
   );
 };
 
