@@ -1,13 +1,19 @@
-import { Image, StyleSheet, Text, View } from "react-native";
+import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import React from "react";
 import { s, vs } from "react-native-size-matters";
 import { AppColors } from "../../styles/colors";
 import AppText from "../texts/AppText";
 import { AppFonts } from "../../styles/fonts";
+import { Ionicons } from "@expo/vector-icons";
+import { commonStyles } from "../../styles/sharedStyles";
 
 const ProductsCard = () => {
   return (
     <View style={styles.container}>
+      {/* Add to Cart */}
+      <TouchableOpacity style={styles.addToCartButton}>
+        <Ionicons name="cart" size={s(15)} color={AppColors.white} />
+      </TouchableOpacity>
       <View style={styles.imageContainer}>
         <Image
           style={styles.image}
@@ -32,7 +38,7 @@ const styles = StyleSheet.create({
     height: vs(190),
     borderRadius: s(10),
     backgroundColor: AppColors.white,
-    borderWidth: 1,
+    ...commonStyles.shadow,
   },
   imageContainer: {
     borderTopLeftRadius: s(10),
@@ -62,5 +68,17 @@ const styles = StyleSheet.create({
     marginTop: vs(7),
     fontFamily: AppFonts.bold,
     color: AppColors.primary,
+  },
+  addToCartButton: {
+    height: s(28),
+    width: s(28),
+    position: "absolute",
+    left: 5,
+    top: 5,
+    borderRadius: s(14),
+    backgroundColor: AppColors.primary,
+    zIndex: 1,
+    justifyContent: "center",
+    alignItems: "center",
   },
 });
