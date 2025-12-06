@@ -3,12 +3,13 @@ import React from "react";
 import AppSaveView from "../../components/views/AppSaveView";
 import HomeHeader from "../../components/headers/HomeHeader";
 import AppText from "../../components/texts/AppText";
+import ProductsCard from "../../components/cards/ProductsCard";
 
 const HomeScreen = () => {
   return (
     <AppSaveView>
       <HomeHeader />
-      <AppText>HomeScreen</AppText>
+      <ProductsCard />
     </AppSaveView>
   );
 };
