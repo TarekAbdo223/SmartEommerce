@@ -1,5 +1,5 @@
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import React from "react";
+import React, { FC } from "react";
 import { s, vs } from "react-native-size-matters";
 import { AppColors } from "../../styles/colors";
 import AppText from "../texts/AppText";
@@ -7,24 +7,31 @@ import { AppFonts } from "../../styles/fonts";
 import { Ionicons } from "@expo/vector-icons";
 import { commonStyles } from "../../styles/sharedStyles";
 
-const ProductsCard = () => {
+interface IProducts {
+  onPress: () => void;
+  title: string;
+  price: string;
+  imageURL: string;
+}
+
+const ProductsCard: FC<IProducts> = ({ imageURL, onPress, title, price }) => {
   return (
     <View style={styles.container}>
       {/* Add to Cart */}
-      <TouchableOpacity style={styles.addToCartButton}>
+      <TouchableOpacity style={styles.addToCartButton} onPress={onPress}>
         <Ionicons name="cart" size={s(15)} color={AppColors.white} />
       </TouchableOpacity>
       <View style={styles.imageContainer}>
         <Image
           style={styles.image}
           source={{
-            uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQJ0qp9dhZEw9xPPGne8q2Aa8Cd7uu6Z64a0A&s",
+            uri: imageURL,
           }}
         />
       </View>
       <View style={styles.detailsContainer}>
-        <AppText style={styles.titleText}>The Witcher 3</AppText>
-        <AppText style={styles.priceText}>1200 $</AppText>
+        <AppText style={styles.titleText}>{title}</AppText>
+        <AppText style={styles.priceText}>{price}</AppText>
       </View>
     </View>
   );
