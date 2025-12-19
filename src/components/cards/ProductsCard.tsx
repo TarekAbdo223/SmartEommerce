@@ -8,17 +8,25 @@ import { Ionicons } from "@expo/vector-icons";
 import { commonStyles } from "../../styles/sharedStyles";
 
 interface IProducts {
-  onPress: () => void;
+  onAddToCartPress: () => void;
   title: string;
-  price: string;
+  price: number;
   imageURL: string;
 }
 
-const ProductsCard: FC<IProducts> = ({ imageURL, onPress, title, price }) => {
+const ProductsCard: FC<IProducts> = ({
+  imageURL,
+  onAddToCartPress,
+  title,
+  price,
+}) => {
   return (
     <View style={styles.container}>
       {/* Add to Cart */}
-      <TouchableOpacity style={styles.addToCartButton} onPress={onPress}>
+      <TouchableOpacity
+        style={styles.addToCartButton}
+        onPress={onAddToCartPress}
+      >
         <Ionicons name="cart" size={s(15)} color={AppColors.white} />
       </TouchableOpacity>
       <View style={styles.imageContainer}>
