@@ -4,6 +4,7 @@ import HomeHeader from "../../components/headers/HomeHeader";
 import AppSaveView from "../../components/views/AppSaveView";
 import EmptyCart from "./EmptyCart";
 import CartItem from "../../components/cart/CartItem";
+import TotalsView from "../../components/cart/TotalsView";
 
 const CartScreen = () => {
   return (
@@ -11,6 +12,7 @@ const CartScreen = () => {
       <HomeHeader />
       {/* <EmptyCart /> */}
       <CartItem />
+      <TotalsView />
     </AppSaveView>
   );
 };
