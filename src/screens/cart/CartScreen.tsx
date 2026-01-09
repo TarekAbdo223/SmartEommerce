@@ -8,8 +8,11 @@ import TotalsView from "../../components/cart/TotalsView";
 import { products } from "../../data/products";
 import { sharedPaddingHorizontal } from "../../styles/sharedStyles";
 import AppButton from "../../components/buttons/AppButton";
+import { useNavigation } from "@react-navigation/native";
 
 const CartScreen = () => {
+  const navigation = useNavigation();
+
   return (
     <AppSaveView>
       <HomeHeader />
@@ -25,7 +28,10 @@ const CartScreen = () => {
         />
 
         <TotalsView itemsPrice={5000} orderTotal={5025} />
-        <AppButton title="Continue" />
+        <AppButton
+          title="Continue"
+          onPress={() => navigation.navigate("CheckoutScreen")}
+        />
       </View>
     </AppSaveView>
   );
