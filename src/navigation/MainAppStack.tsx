@@ -2,6 +2,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import AuthStack from "./AuthStack";
 import MainAppBottomTabs from "./MainAppBottomTabs";
 import Checkout from "../screens/cart/Checkout";
+import MyOrdersScreen from "../screens/profile/MyOrdersScreen";
 
 const Stack = createStackNavigator();
 
@@ -15,6 +16,14 @@ export default function MainAppStack() {
         component={Checkout}
         options={{
           headerShown: true,
+        }}
+      />
+      <Stack.Screen
+        name="MyOrdersScreen"
+        component={MyOrdersScreen}
+        options={{
+          headerShown: true,
+          headerTitle: "My Orders",
         }}
       />
     </Stack.Navigator>
