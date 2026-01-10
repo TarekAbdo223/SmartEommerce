@@ -9,6 +9,7 @@ import { products } from "../../data/products";
 import { sharedPaddingHorizontal } from "../../styles/sharedStyles";
 import AppButton from "../../components/buttons/AppButton";
 import { useNavigation } from "@react-navigation/native";
+import { vs } from "react-native-size-matters";
 
 const CartScreen = () => {
   const navigation = useNavigation();
@@ -17,7 +18,13 @@ const CartScreen = () => {
     <AppSaveView>
       <HomeHeader />
       {/* <EmptyCart /> */}
-      <View style={{ paddingHorizontal: sharedPaddingHorizontal, flex: 1 }}>
+      <View
+        style={{
+          paddingHorizontal: sharedPaddingHorizontal,
+          flex: 1,
+          paddingBottom: vs(5),
+        }}
+      >
         <FlatList
           showsVerticalScrollIndicator={false}
           data={products}
