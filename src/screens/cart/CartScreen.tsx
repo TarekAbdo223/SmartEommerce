@@ -10,9 +10,13 @@ import { sharedPaddingHorizontal } from "../../styles/sharedStyles";
 import AppButton from "../../components/buttons/AppButton";
 import { useNavigation } from "@react-navigation/native";
 import { vs } from "react-native-size-matters";
+import { useSelector } from "react-redux";
+import { RootState } from "../../store/store";
 
 const CartScreen = () => {
   const navigation = useNavigation();
+  const { items } = useSelector((state: RootState) => state.cartSlice);
+  console.log(items);
 
   return (
     <AppSaveView>
@@ -27,7 +31,7 @@ const CartScreen = () => {
       >
         <FlatList
           showsVerticalScrollIndicator={false}
-          data={products}
+          data={items}
           keyExtractor={(item) => item.id.toString()}
           renderItem={({ item }) => {
             return <CartItem {...item} />;
