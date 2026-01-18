@@ -9,11 +9,27 @@ const cartSlice = createSlice({
   initialState: initialState,
   reducers: {
     //addItemToCart
+    addItemToCart: (state, action) => {
+      const existingItem = state.items.find(
+        (item) => item.id === action.payload.id
+      );
+
+      if (existingItem) {
+        existingItem.qty += 1;
+        existingItem.sum += action.payload.price;
+      } else {
+        state.items.push({
+          ...action.payload,
+          qty: 1,
+          sum: action.payload.price,
+        });
+      }
+    },
     //qtyDecrease
     //removeProduct
     //emptyCart
   },
 });
 
-export const {} = cartSlice.actions;
+export const { addItemToCart } = cartSlice.actions;
 export default cartSlice.reducer;

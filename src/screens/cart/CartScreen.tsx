@@ -34,7 +34,7 @@ const CartScreen = () => {
           data={items}
           keyExtractor={(item) => item.id.toString()}
           renderItem={({ item }) => {
-            return <CartItem {...item} />;
+            return <CartItem {...item} price={item.sum} />;
           }}
         />
 
