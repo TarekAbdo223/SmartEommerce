@@ -1,6 +1,18 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = {
+interface CartItem {
+  id: number | string;
+  name: string;
+  qty: number;
+  sum: number;
+  price: number;
+}
+
+interface CartState {
+  items: CartItem[];
+}
+
+const initialState: CartState = {
   items: [],
 };
 
@@ -26,10 +38,25 @@ const cartSlice = createSlice({
       }
     },
     //qtyDecrease
+    removeItemFromCart: (state, action) => {
+      const existingItem = state.items.find(
+        (item) => item.id === action.payload.id
+      );
+
+      if (existingItem.qty > 1) {
+        existingItem.qty -= 1;
+        existingItem.sum -= action.payload.price;
+      } else {
+        state.items = state.items.filter(
+          (item) => item.id !== action.payload.id
+        );
+      }
+    },
+
     //removeProduct
     //emptyCart
   },
 });
 
-export const { addItemToCart } = cartSlice.actions;
+export const { addItemToCart, removeItemFromCart } = cartSlice.actions;
 export default cartSlice.reducer;
