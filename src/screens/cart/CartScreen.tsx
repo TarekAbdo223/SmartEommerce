@@ -12,7 +12,11 @@ import { useNavigation } from "@react-navigation/native";
 import { vs } from "react-native-size-matters";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../store/store";
-import { removeItemFromCart } from "../../store/reducers/cartSlice";
+import {
+  addItemToCart,
+  removeItemFromCart,
+  removeProduct,
+} from "../../store/reducers/cartSlice";
 
 const CartScreen = () => {
   const dispatch = useDispatch();
@@ -41,6 +45,8 @@ const CartScreen = () => {
                 {...item}
                 price={item.sum}
                 onReducePress={() => dispatch(removeItemFromCart(item))}
+                onDeletePress={() => dispatch(removeProduct(item))}
+                onIncreasePress={() => dispatch(addItemToCart(item))}
               />
             );
           }}

@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import EmptyCart from "../../screens/cart/EmptyCart";
 
 interface CartItem {
   id: number | string;
@@ -54,9 +55,16 @@ const cartSlice = createSlice({
     },
 
     //removeProduct
+    removeProduct: (state, action) => {
+      state.items = state.items.filter((item) => item.id !== action.payload.id);
+    },
     //emptyCart
+    emptyCart: (state) => {
+      state.items = [];
+    },
   },
 });
 
-export const { addItemToCart, removeItemFromCart } = cartSlice.actions;
+export const { addItemToCart, removeItemFromCart, removeProduct, emptyCart } =
+  cartSlice.actions;
 export default cartSlice.reducer;
