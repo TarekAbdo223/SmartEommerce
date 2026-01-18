@@ -17,6 +17,7 @@ import {
   removeItemFromCart,
   removeProduct,
 } from "../../store/reducers/cartSlice";
+import { shippingFees, taxes } from "../../constants/constants";
 
 const CartScreen = () => {
   const dispatch = useDispatch();
@@ -24,40 +25,49 @@ const CartScreen = () => {
   const { items } = useSelector((state: RootState) => state.cartSlice);
   console.log(items);
 
+  const totalProductsPriceSum = items.reduce((acc, item) => acc + item.sum, 0);
+  const orderTotal = totalProductsPriceSum + shippingFees + taxes;
+
   return (
     <AppSaveView>
       <HomeHeader />
-      {/* <EmptyCart /> */}
-      <View
-        style={{
-          paddingHorizontal: sharedPaddingHorizontal,
-          flex: 1,
-          paddingBottom: vs(5),
-        }}
-      >
-        <FlatList
-          showsVerticalScrollIndicator={false}
-          data={items}
-          keyExtractor={(item) => item.id.toString()}
-          renderItem={({ item }) => {
-            return (
-              <CartItem
-                {...item}
-                price={item.sum}
-                onReducePress={() => dispatch(removeItemFromCart(item))}
-                onDeletePress={() => dispatch(removeProduct(item))}
-                onIncreasePress={() => dispatch(addItemToCart(item))}
-              />
-            );
+      {items.length > 0 ? (
+        <View
+          style={{
+            paddingHorizontal: sharedPaddingHorizontal,
+            flex: 1,
+            paddingBottom: vs(5),
           }}
-        />
+        >
+          <FlatList
+            showsVerticalScrollIndicator={false}
+            data={items}
+            keyExtractor={(item) => item.id.toString()}
+            renderItem={({ item }) => {
+              return (
+                <CartItem
+                  {...item}
+                  price={item.sum}
+                  onReducePress={() => dispatch(removeItemFromCart(item))}
+                  onDeletePress={() => dispatch(removeProduct(item))}
+                  onIncreasePress={() => dispatch(addItemToCart(item))}
+                />
+              );
+            }}
+          />
 
-        <TotalsView itemsPrice={5000} orderTotal={5025} />
-        <AppButton
-          title="Continue"
-          onPress={() => navigation.navigate("CheckoutScreen")}
-        />
-      </View>
+          <TotalsView
+            itemsPrice={totalProductsPriceSum}
+            orderTotal={orderTotal}
+          />
+          <AppButton
+            title="Continue"
+            onPress={() => navigation.navigate("CheckoutScreen")}
+          />
+        </View>
+      ) : (
+        <EmptyCart />
+      )}
     </AppSaveView>
   );
 };
